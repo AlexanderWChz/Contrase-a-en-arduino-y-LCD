@@ -1,0 +1,27 @@
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+String ingreso;
+void setup() {
+  // put your setup code here, to run once:
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  Serial.println("Write your password");
+  lcd.clear();
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+    if (Serial.available()>0)  {
+      ingreso = Serial.readString();
+      lcd.setCursor(3,3);
+      Serial.println(ingreso);
+      
+      if(ingreso.equals("2408a") ){
+        lcd.clear();
+        lcd.print("CORRECT");
+      }
+      else{
+        lcd.clear();
+        lcd.print("INCORRECT");
+      }
+   }
+}
